@@ -16,15 +16,34 @@ echo If the browser does not open, visit:
 echo %DASHBOARD_URL%
 echo.
 
-where py >nul 2>nul
-if %ERRORLEVEL%==0 (
-  py -3 backend\server.py %TREND_RADAR_PORT%
-  goto :server_stopped
+if not exist "backend\server.py" (
+  echo Cannot find backend\server.py.
+  echo Please unzip the downloaded ZIP first, then run start-dashboard.bat from the extracted folder.
+  pause
+  goto :end
 )
 
-where python >nul 2>nul
-if %ERRORLEVEL%==0 (
-  python backend\server.py %TREND_RADAR_PORT%
+set "PYTHON_CMD="
+set "PYTHON_LABEL="
+
+py -3 -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >nul 2>nul
+if not errorlevel 1 (
+  set "PYTHON_CMD=py -3"
+  set "PYTHON_LABEL=py -3"
+)
+
+if not defined PYTHON_CMD (
+  python -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >nul 2>nul
+  if not errorlevel 1 (
+    set "PYTHON_CMD=python"
+    set "PYTHON_LABEL=python"
+  )
+)
+
+if defined PYTHON_CMD (
+  echo Using Python command: %PYTHON_LABEL%
+  echo.
+  %PYTHON_CMD% backend\server.py %TREND_RADAR_PORT%
   goto :server_stopped
 )
 
