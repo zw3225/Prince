@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+
+.agents/
+.codex/
+
+*.log
+backend-*.out.log
+backend-*.err.log
+
+data/trend_searches.json
+
+trend-radar-team-package*.zip
+trend-radar-team-package-*/
+
+.env
+*.env

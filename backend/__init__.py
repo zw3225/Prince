@@ -1,0 +1,1 @@
+"""Trend radar backend package."""

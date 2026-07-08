@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>海外趋势爆款雷达</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="rail" aria-label="数据源状态">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">R</div>
+          <div>
+            <strong>爆款雷达</strong>
+            <span>海外爆款发现</span>
+          </div>
+        </div>
+        <div class="rail-section">
+          <p class="rail-title">默认市场</p>
+          <div class="market-list" id="marketList"></div>
+        </div>
+        <div class="rail-section">
+          <p class="rail-title">平台连接</p>
+          <div class="source-list" id="sourceList"></div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <section class="topbar">
+          <div>
+            <h1>海外趋势爆款雷达</h1>
+            <p>输入类目、人群或场景，查看社媒内容、垂类达人和可验证机会入口。</p>
+          </div>
+          <div class="refresh-pill">
+            <span class="dot"></span>
+            每日刷新
+          </div>
+        </section>
+
+        <section class="search-panel" aria-label="创建趋势任务">
+          <form id="searchForm" class="search-form">
+            <label class="query-field">
+              <span>趋势类目 / 目标人群</span>
+              <input id="queryInput" name="query" value="便携榨汁机 健身女生" autocomplete="off" />
+            </label>
+            <label>
+              <span>时间窗</span>
+              <select id="windowSelect" name="window_days">
+                <option value="7">7 天</option>
+                <option value="30" selected>30 天</option>
+                <option value="90">90 天</option>
+              </select>
+            </label>
+            <button id="searchButton" type="submit">生成雷达</button>
+          </form>
+          <div class="market-toggles" aria-label="市场筛选">
+            <label class="market-toggle market-us"><input type="checkbox" value="US" checked /> US</label>
+            <label class="market-toggle market-uk"><input type="checkbox" value="UK" checked /> UK</label>
+            <label class="market-toggle market-ca"><input type="checkbox" value="CA" checked /> CA</label>
+            <label class="market-toggle market-au"><input type="checkbox" value="AU" checked /> AU</label>
+          </div>
+        </section>
+
+        <section class="metric-strip" id="metricStrip" aria-label="趋势概览"></section>
+
+        <section class="insight-band">
+          <div>
+            <h2>本轮可验证机会</h2>
+            <p class="insight-lead">先看内容需求，再核对达人主页，最后打开商详确认价格和评价。</p>
+            <div class="insight-list" id="narrativeList"></div>
+          </div>
+          <div class="tag-panel">
+            <h3>关联线索</h3>
+            <p>从内容和商品标签里汇总出的需求词 / 人群，数字代表出现次数。</p>
+            <div class="tag-cloud" id="tagCloud" aria-label="关联线索"></div>
+          </div>
+        </section>
+
+        <section class="rankings">
+          <div class="tabs" role="tablist" aria-label="榜单类型">
+            <button class="tab active" data-tab="content" type="button">爆款社媒内容</button>
+            <button class="tab" data-tab="creators" type="button">垂类达人</button>
+            <button class="tab" data-tab="opportunities" type="button">机会洞察</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead id="rankingHead"></thead>
+              <tbody id="rankingBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <aside class="detail-panel" id="detailPanel" aria-label="证据详情">
+        <div class="empty-detail">
+          <h2>选择一条榜单</h2>
+          <p>这里会展示可打开入口、已抓到的真实字段和待人工确认事项。</p>
+        </div>
+      </aside>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
