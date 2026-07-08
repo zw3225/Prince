@@ -4,6 +4,8 @@ import json
 import mimetypes
 import os
 import sys
+import threading
+import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -18,7 +20,7 @@ from backend.storage import store
 ROOT = Path(__file__).resolve().parent.parent
 WEB_DIR = ROOT / "web"
 HOST = "127.0.0.1"
-PORT = 8787
+PORT = 18787
 
 
 class TrendRadarHandler(BaseHTTPRequestHandler):
@@ -165,13 +167,18 @@ def _related_entities(result: dict, related_ids: list[str]) -> list[dict]:
     return [item for item in all_items if item["id"] in related_ids]
 
 
-def run(host: str = HOST, port: int = PORT) -> None:
+def run(host: str = HOST, port: int = PORT, open_browser: bool = False) -> None:
     server = ThreadingHTTPServer((host, port), TrendRadarHandler)
+    local_url = f"http://127.0.0.1:{port}/"
     print(f"Trend radar running at http://{host}:{port}")
+    print(f"Open dashboard: {local_url}")
+    if open_browser:
+        threading.Timer(0.5, lambda: webbrowser.open(local_url)).start()
     server.serve_forever()
 
 
 if __name__ == "__main__":
     selected_port = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("TREND_RADAR_PORT", PORT))
     selected_host = os.environ.get("TREND_RADAR_HOST", HOST)
-    run(host=selected_host, port=selected_port)
+    should_open_browser = os.environ.get("TREND_RADAR_OPEN_BROWSER") == "1"
+    run(host=selected_host, port=selected_port, open_browser=should_open_browser)

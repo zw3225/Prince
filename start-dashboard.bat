@@ -4,7 +4,8 @@ setlocal
 cd /d "%~dp0"
 
 if "%TREND_RADAR_HOST%"=="" set "TREND_RADAR_HOST=127.0.0.1"
-if "%TREND_RADAR_PORT%"=="" set "TREND_RADAR_PORT=8787"
+if "%TREND_RADAR_PORT%"=="" set "TREND_RADAR_PORT=18787"
+set "TREND_RADAR_OPEN_BROWSER=1"
 set "DASHBOARD_URL=http://127.0.0.1:%TREND_RADAR_PORT%/"
 
 echo Trend Radar dashboard is starting...
@@ -14,8 +15,6 @@ echo.
 echo If the browser does not open, visit:
 echo %DASHBOARD_URL%
 echo.
-
-start "" "%DASHBOARD_URL%"
 
 where py >nul 2>nul
 if %ERRORLEVEL%==0 (

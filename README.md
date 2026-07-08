@@ -15,10 +15,10 @@ start-dashboard.bat
 脚本会自动打开：
 
 ```text
-http://127.0.0.1:8787
+http://127.0.0.1:18787
 ```
 
-如果浏览器显示“拒绝连接”，说明本机服务没有启动成功，先确认黑色启动窗口还开着，并且浏览器地址不是 `8000`。
+如果浏览器显示“拒绝连接”，说明本机服务没有启动成功，先确认黑色启动窗口还开着，并且浏览器地址不是 `8787` 或 `8000`。
 
 也可以手动运行：
 
@@ -29,7 +29,7 @@ python backend/server.py
 然后打开：
 
 ```text
-http://127.0.0.1:8787
+http://127.0.0.1:18787
 ```
 
 如果本机没有把 Python 放进 PATH，可以使用 Codex 工作区依赖里的 Python 路径运行。
@@ -49,7 +49,7 @@ start-dashboard.bat
 然后打开：
 
 ```text
-http://127.0.0.1:8787
+http://127.0.0.1:18787
 ```
 
 这种方式不需要改你电脑防火墙，也不需要同事连你的电脑。详细说明见 `TEAM_USE.md`。
@@ -60,17 +60,17 @@ http://127.0.0.1:8787
 
 ```powershell
 $env:TREND_RADAR_HOST = "0.0.0.0"
-$env:TREND_RADAR_PORT = "8787"
+$env:TREND_RADAR_PORT = "18787"
 python backend/server.py
 ```
 
 然后把你的电脑局域网 IP 发给同事，例如：
 
 ```text
-http://你的电脑IP:8787
+http://你的电脑IP:18787
 ```
 
-如果别人打不开，通常是 Windows 防火墙没有放行 8787 端口，或大家不在同一个网络里。
+如果别人打不开，通常是 Windows 防火墙没有放行 18787 端口，或大家不在同一个网络里。
 
 ### 2. 所有人都能通过固定网址访问
 
@@ -78,7 +78,7 @@ http://你的电脑IP:8787
 
 ```powershell
 $env:TREND_RADAR_HOST = "0.0.0.0"
-$env:TREND_RADAR_PORT = "8787"
+$env:TREND_RADAR_PORT = "18787"
 python backend/server.py
 ```
 
